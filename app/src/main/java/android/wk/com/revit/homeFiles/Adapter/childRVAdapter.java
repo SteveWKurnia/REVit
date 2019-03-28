@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.wk.com.revit.DataModels.Game;
 import android.wk.com.revit.R;
 
@@ -27,16 +28,22 @@ public class childRVAdapter extends RecyclerView.Adapter<childRVAdapter.ViewHold
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, final int i) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.recycler_home_child_content,viewGroup,false);
 
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
+    public void onBindViewHolder(@NonNull ViewHolder viewHolder, final int i) {
         Picasso.with(this.context).load(gameDataModel.get(i).getGameIcon()).resize(400,400).into(viewHolder.gameIcon);
         viewHolder.gameTitle.setText(gameDataModel.get(i).getTitle());
+        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context,gameDataModel.get(i).getTitle(),Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override
