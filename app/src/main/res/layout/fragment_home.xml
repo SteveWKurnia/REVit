@@ -6,8 +6,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <com.synnapps.carouselview.CarouselView
             android:id="@+id/carousel"
@@ -16,6 +16,7 @@
             app:fillColor="@color/colorPrimary"
             app:radius="10dp"
             app:slideInterval="6000"
+            android:nestedScrollingEnabled="false"
             />
 
         <android.support.v7.widget.RecyclerView

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,21 +41,42 @@ public class parentRVAdapter extends RecyclerView.Adapter<parentRVAdapter.viewHo
         ArrayList<Game> strategyDataModel = new ArrayList<>();
         ArrayList<Game> simulatorDataModel = new ArrayList<>();
 
-        ////TRY////
-        if (this.gameDataModel.get(i).getCategory() == "Action"){
-            actionDataModel.add(this.gameDataModel.get(i));
-        }
-        else if(this.gameDataModel.get(i).getCategory() == "Simulator"){
-            simulatorDataModel.add(this.gameDataModel.get(i));
-        }
-        else if(this.gameDataModel.get(i).getCategory() == "Strategy"){
-            strategyDataModel.add(this.gameDataModel.get(i));
-        }
-        ////TRY////
+        Log.d("MyLog", i + " loop " + gameDataModel.get(i).getTitle());
 
-        viewHolder.childRecycler.setRecycledViewPool(viewPool);
-        viewHolder.childRecycler.setLayoutManager(new LinearLayoutManager(viewHolder.childRecycler.getContext(), 0,false));
-        viewHolder.childRecycler.setAdapter(new childRVAdapter(gameDataModel,context));
+        ////TRY////
+        for (int j = i; j < gameDataModel.size(); j++){
+            if (this.gameDataModel.get(i).getCategory() == this.gameDataModel.get(j).getCategory()){
+
+                Log.d("MyLog", "     Action: " + j + " loop" + gameDataModel.get(j).getTitle());
+
+                actionDataModel.add(this.gameDataModel.get(j));
+
+                viewHolder.childRecycler.setRecycledViewPool(viewPool);
+                viewHolder.childRecycler.setLayoutManager(new LinearLayoutManager(viewHolder.childRecycler.getContext(), 0,false));
+                viewHolder.childRecycler.setAdapter(new childRVAdapter(actionDataModel,context));
+            }
+            else if(this.gameDataModel.get(i).getCategory() == this.gameDataModel.get(j).getCategory()){
+
+                Log.d("MyLog", "     Simulator: " + j + " loop " + gameDataModel.get(j).getTitle());
+
+                simulatorDataModel.add(this.gameDataModel.get(j));
+
+                viewHolder.childRecycler.setRecycledViewPool(viewPool);
+                viewHolder.childRecycler.setLayoutManager(new LinearLayoutManager(viewHolder.childRecycler.getContext(), 0,false));
+                viewHolder.childRecycler.setAdapter(new childRVAdapter(simulatorDataModel,context));
+            }
+            else if(this.gameDataModel.get(i).getCategory() == this.gameDataModel.get(j).getCategory()){
+
+                Log.d("MyLog", "     Strategy: " + j + " loop " + gameDataModel.get(j).getTitle());
+
+                strategyDataModel.add(this.gameDataModel.get(j));
+
+                viewHolder.childRecycler.setRecycledViewPool(viewPool);
+                viewHolder.childRecycler.setLayoutManager(new LinearLayoutManager(viewHolder.childRecycler.getContext(), 0,false));
+                viewHolder.childRecycler.setAdapter(new childRVAdapter(strategyDataModel,context));
+            }
+        }
+        ////TRY////
     }
 
     @Override

@@ -67,6 +67,9 @@ public class HomeFragment extends Fragment {
         games.add(new Game("Simulator",R.drawable.rf_icon,R.drawable.rf_wallpaper,"Rune Factory 4",0,0));
         games.add(new Game("Strategy",R.drawable.atlas_icon,R.drawable.atlas_wallpaper,"Atlas Reactor",0,0));
         games.add(new Game("Action",R.drawable.hyper_light_icon,R.drawable.hyper_light_wallpaper,"Hyper Light",0,0));
+        games.add(new Game("Action",R.drawable.borderlands2_icon,R.drawable.borderlands2_wallpaper,"Borderlands 2",0,0));
+        games.add(new Game("Strategy",R.drawable.civ_icon,R.drawable.civ_wallpaper,"Civilization VI",0,0));
+        games.add(new Game("Simulator",R.drawable.ark_icon,R.drawable.ark_wallpaper,"Ark:Survival",0,0));
 
         return games;
     }

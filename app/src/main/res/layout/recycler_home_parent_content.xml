@@ -8,7 +8,8 @@
         android:layout_margin="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="10dp">
+        app:cardCornerRadius="10dp"
+        app:cardBackgroundColor="#10ffffff">
 
         <RelativeLayout
             android:layout_width="wrap_content"
@@ -17,6 +18,7 @@
 
             <TextView
                 android:id="@+id/categoryTitle"
+                android:textColor="#ffffff"
                 android:text="This is a category"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
