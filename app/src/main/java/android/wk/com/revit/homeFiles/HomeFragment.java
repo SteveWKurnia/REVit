@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Toast;
 import android.wk.com.revit.DataModels.Game;
 import android.wk.com.revit.R;
 import android.wk.com.revit.homeFiles.Adapter.childRVAdapter;
@@ -19,12 +20,14 @@ import android.wk.com.revit.homeFiles.Adapter.parentRVAdapter;
 
 import com.squareup.picasso.Picasso;
 import com.synnapps.carouselview.CarouselView;
+import com.synnapps.carouselview.ImageClickListener;
 import com.synnapps.carouselview.ImageListener;
 
 import java.util.ArrayList;
 
 public class HomeFragment extends Fragment {
     private ArrayList<Integer> carouselImage = new ArrayList<>();
+    private ArrayList<Game> games = addGame();
 
     @Nullable
     @Override
@@ -33,16 +36,19 @@ public class HomeFragment extends Fragment {
 
         //Carousel
         CarouselView carouselView = view.findViewById(R.id.carousel);
-        carouselImage.add(R.drawable.hyper_light_wallpaper);
-        carouselImage.add(R.drawable.hollow_knight_wallpaper);
-        carouselImage.add(R.drawable.rf_wallpaper);
 
-        carouselView.setPageCount(carouselImage.size());
+        carouselView.setPageCount(3);
         carouselView.setImageListener(imageListener);
+        carouselView.setImageClickListener(new ImageClickListener() {
+            @Override
+            public void onClick(int position) {
+                Toast.makeText(getContext(),games.get(position).getTitle(),Toast.LENGTH_SHORT).show();
+            }
+        });
 
         //Recycler
         RecyclerView recyclerView = view.findViewById(R.id.recyclerParent);
-        parentRVAdapter parentRVAdapter = new parentRVAdapter(addGame(),this.getContext());
+        parentRVAdapter parentRVAdapter = new parentRVAdapter(games,this.getContext());
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this.getContext(), LinearLayoutManager.VERTICAL,false);
 
         recyclerView.setAdapter(parentRVAdapter);
@@ -55,7 +61,7 @@ public class HomeFragment extends Fragment {
     ImageListener imageListener = new ImageListener() {
         @Override
         public void setImageForPosition(int position, ImageView imageView) {
-            Picasso.with(imageView.getContext()).load(carouselImage.get(position)).resize(1500,800).into(imageView);
+            Picasso.with(imageView.getContext()).load(games.get(position).getGamePoster()).resize(1500,800).into(imageView);
         }
     };
 
