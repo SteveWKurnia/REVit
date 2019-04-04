@@ -1,6 +1,6 @@
 package android.wk.com.revit.DataModels;
 
-public class Game {
+public class Game{
 
     private String category;
     private Integer gameIcon;

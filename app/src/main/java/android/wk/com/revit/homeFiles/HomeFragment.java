@@ -26,7 +26,6 @@ import com.synnapps.carouselview.ImageListener;
 import java.util.ArrayList;
 
 public class HomeFragment extends Fragment {
-    private ArrayList<Integer> carouselImage = new ArrayList<>();
     private ArrayList<Game> games = addGame();
 
     @Nullable
