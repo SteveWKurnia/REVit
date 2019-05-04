@@ -9,29 +9,39 @@
     tools:context=".MainActivity"
     android:background="@color/colorPrimaryDark">
 
-    <!--<include-->
-        <!--layout="@layout/toolbar"-->
-        <!--android:id="@+id/toolbar"-->
+
+        <android.support.v7.widget.Toolbar
+            android:background="@color/colorPrimary"
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="4dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layoutDirection="ltr"
+            app:menu="@menu/top_action_bar"
+            android:theme="@style/Base.ThemeOverlay.AppCompat.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
+        </android.support.v7.widget.Toolbar>
+
+
+    <!--<android.support.design.widget.BottomNavigationView-->
+        <!--app:itemIconTint="@color/colorPrimaryDark"-->
+        <!--app:itemTextColor="@color/colorPrimaryDark"-->
+        <!--android:background="@color/colorPrimary"-->
+
+        <!--android:id="@+id/navigation"-->
         <!--android:layout_width="match_parent"-->
         <!--android:layout_height="wrap_content"-->
-        <!--/>-->
+        <!--android:layout_alignParentTop="true"-->
+        <!--app:menu="@menu/navigation" />-->
 
     <FrameLayout
         android:id="@+id/fragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/navigation"/>
-        <!--android:layout_below="@id/toolbar"/>-->
-
-    <android.support.design.widget.BottomNavigationView
-        app:itemIconTint="@color/colorPrimaryDark"
-        app:itemTextColor="@color/colorPrimaryDark"
-        android:background="@color/colorPrimary"
-
-        android:id="@+id/navigation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        app:menu="@menu/navigation" />
-
+        android:layout_below="@+id/toolbar"
+        />
+        <!--android:layout_below="@+id/navigation"-->
 </RelativeLayout>

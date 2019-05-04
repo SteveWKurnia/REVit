@@ -1,6 +1,8 @@
 package android.wk.com.revit.searchFiles.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -10,8 +12,10 @@ import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.wk.com.revit.DataModels.Game;
 import android.wk.com.revit.R;
+import android.wk.com.revit.gameActivity;
 
 import com.squareup.picasso.Picasso;
 
@@ -35,9 +39,19 @@ public class searchAdapter extends RecyclerView.Adapter<searchAdapter.ViewHolder
     }
 
     @Override
-    public void onBindViewHolder(@NonNull searchAdapter.ViewHolder viewHolder, int i) {
+    public void onBindViewHolder(@NonNull searchAdapter.ViewHolder viewHolder,final int i) {
         viewHolder.gameTitle.setText(games.get(i).getTitle());
         Picasso.with(this.context).load(games.get(i).getGameIcon()).resize(400,400).into(viewHolder.gameIcon);
+        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context,gameActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("gameArray",games.get(i));
+                intent.putExtra("gameBundle",bundle);
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override

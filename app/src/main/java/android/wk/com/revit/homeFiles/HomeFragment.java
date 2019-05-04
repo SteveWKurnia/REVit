@@ -1,5 +1,6 @@
 package android.wk.com.revit.homeFiles;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -8,13 +9,16 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.LinearSnapHelper;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SnapHelper;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.Toast;
 import android.wk.com.revit.DataModels.Game;
+import android.wk.com.revit.DataModels.Review;
 import android.wk.com.revit.R;
+import android.wk.com.revit.gameActivity;
 import android.wk.com.revit.homeFiles.Adapter.childRVAdapter;
 import android.wk.com.revit.homeFiles.Adapter.parentRVAdapter;
 
@@ -41,7 +45,15 @@ public class HomeFragment extends Fragment {
         carouselView.setImageClickListener(new ImageClickListener() {
             @Override
             public void onClick(int position) {
-                Toast.makeText(getContext(),games.get(position).getTitle(),Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getContext(), gameActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("gameArray",games.get(position));
+                intent.putExtra("gameBundle", bundle);
+//                intent.putExtra("gamePageTitle", games.get(position).getTitle());
+//                intent.putExtra("gamePageImage", games.get(position).getGamePoster());
+                Log.d("MyTag", "Putting extra!");
+                getContext().startActivity(intent);
+                Log.d("MyTag", "Starting intent!");
             }
         });
 
@@ -66,15 +78,15 @@ public class HomeFragment extends Fragment {
 
     private ArrayList<Game> addGame(){
         ArrayList<Game> games = new ArrayList<>();
-        games.add(new Game("Action",R.drawable.hollow_knight_icon,R.drawable.hollow_knight_wallpaper,"Hollow Knight",0,0));
-        games.add(new Game("Simulator",R.drawable.stardew_icon,R.drawable.stardew_wallpaper,"Stardew Valley",0,0));
-        games.add(new Game("Strategy",R.drawable.shadow_tactics_icon,R.drawable.shadow_tactics_wallpaper,"Shadow Tactics",0,0));
-        games.add(new Game("Simulator",R.drawable.rf_icon,R.drawable.rf_wallpaper,"Rune Factory 4",0,0));
-        games.add(new Game("Strategy",R.drawable.atlas_icon,R.drawable.atlas_wallpaper,"Atlas Reactor",0,0));
-        games.add(new Game("Action",R.drawable.hyper_light_icon,R.drawable.hyper_light_wallpaper,"Hyper Light",0,0));
-        games.add(new Game("Action",R.drawable.borderlands2_icon,R.drawable.borderlands2_wallpaper,"Borderlands 2",0,0));
-        games.add(new Game("Strategy",R.drawable.civ_icon,R.drawable.civ_wallpaper,"Civilization VI",0,0));
-        games.add(new Game("Simulator",R.drawable.ark_icon,R.drawable.ark_wallpaper,"Ark:Survival",0,0));
+        games.add(new Game("Action",R.drawable.hollow_knight_icon,R.drawable.hollow_knight_wallpaper,"Hollow Knight",0,0,new ArrayList<Review>()));
+        games.add(new Game("Simulator",R.drawable.stardew_icon,R.drawable.stardew_wallpaper,"Stardew Valley",0,0,new ArrayList<Review>()));
+        games.add(new Game("Strategy",R.drawable.shadow_tactics_icon,R.drawable.shadow_tactics_wallpaper,"Shadow Tactics",0,0,new ArrayList<Review>()));
+        games.add(new Game("Simulator",R.drawable.rf_icon,R.drawable.rf_wallpaper,"Rune Factory 4",0,0,new ArrayList<Review>()));
+        games.add(new Game("Strategy",R.drawable.atlas_icon,R.drawable.atlas_wallpaper,"Atlas Reactor",0,0,new ArrayList<Review>()));
+        games.add(new Game("Action",R.drawable.hyper_light_icon,R.drawable.hyper_light_wallpaper,"Hyper Light",0,0,new ArrayList<Review>()));
+        games.add(new Game("Action",R.drawable.borderlands2_icon,R.drawable.borderlands2_wallpaper,"Borderlands 2",0,0,new ArrayList<Review>()));
+        games.add(new Game("Strategy",R.drawable.civ_icon,R.drawable.civ_wallpaper,"Civilization VI",0,0,new ArrayList<Review>()));
+        games.add(new Game("Simulator",R.drawable.ark_icon,R.drawable.ark_wallpaper,"Ark:Survival",0,0,new ArrayList<Review>()));
 
         return games;
     }

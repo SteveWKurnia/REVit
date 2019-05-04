@@ -1,8 +1,11 @@
 package android.wk.com.revit.homeFiles.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.wk.com.revit.DataModels.Game;
 import android.wk.com.revit.R;
+import android.wk.com.revit.gameActivity;
 
 import com.squareup.picasso.Picasso;
 
@@ -41,7 +45,13 @@ public class childRVAdapter extends RecyclerView.Adapter<childRVAdapter.ViewHold
         viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context,gameDataModel.get(i).getTitle(),Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(v.getContext(),gameActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("gameArray", gameDataModel.get(i));
+                intent.putExtra("gameBundle", bundle);
+                Log.d("MyTag", "Putting extra!");
+                v.getContext().startActivity(intent);
+                Log.d("MyTag", "Starting intent!");
             }
         });
     }
